@@ -13,14 +13,22 @@ const SignUp = () => {
    
 
     const handleSignUp = data => {
-        console.log(data)
         createUser(data.email, data.password)
-        .then((result) => {
-            const user = result.user;
-            console.log(user)
-            setSignUpError('')
+        .then(() => {
             toast.success('User Created Successfully')
+            setSignUpError('')
             navigate('/')
+            const userInfo = {
+                displayName: data.name
+            }
+
+            updateUser(userInfo)
+            .then(() => {
+                saveUserToDb(data.name, data.email)
+            })
+            .catch(error => {
+                console.error(error)
+            })
         })
         .catch((error) => {
             console.error(error)

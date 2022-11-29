@@ -9,7 +9,7 @@ const Login = () => {
 
     const [loginError, setLoginError] = useState('')
     const {logIn, signInWithGoogle} = useContext(AuthContext)
-
+ 
 
     const location = useLocation();
     const navigate = useNavigate()
@@ -21,9 +21,8 @@ const Login = () => {
         setLoginError('')
 
         logIn(data.email, data.password)
-        .then((result) => {
-            const user = result.user;
-            navigate('/')
+        .then(() => {
+            navigate(from, {replace: true});
         })
         .catch((error) => {
             console.error(error)

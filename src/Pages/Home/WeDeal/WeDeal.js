@@ -13,7 +13,7 @@ const WeDeal = () => {
             <div className='grid grid-cols-3 md:grid-cols-6 gap-4 items-center justify-items-center my-16'>
                 <img className=' h-16' src={company1} alt="" />
                 <img className=' h-16' src={company2} alt="" />
-                <img className=' h-16' src={company3} alt="" />
+                <img className=' h-12' src={company3} alt="" />
                 <img className=' h-32' src={company4} alt="" />
                 <img className=' h-16' src={company5} alt="" />
                 <img className=' h-24' src={company6} alt="" />
