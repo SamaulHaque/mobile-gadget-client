@@ -71,9 +71,7 @@ const Login = () => {
                         })}
                             className="input input-bordered w-full" />
                         {errors.password && <p className='text-red-600 mt-2' role="alert">{errors.password?.message}</p>}
-                        <label className="label">
-                            <span className="label-text">Forgot Password?</span>
-                        </label>
+                        
                     </div>
 
 

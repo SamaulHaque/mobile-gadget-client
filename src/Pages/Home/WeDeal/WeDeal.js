@@ -8,9 +8,9 @@ import company6 from '../../../assets/company-logo-6.png';
 
 const WeDeal = () => {
     return (
-        <div className='mx-5'>
+        <div className='mx-5 mt-16'>
             <h2 className='text-4xl text-cyan-600 text-center font-bold'>We Deal In</h2>
-            <div className='grid grid-cols-3 md:grid-cols-6 gap-4 items-center justify-items-center my-16'>
+            <div className='grid grid-cols-3 md:grid-cols-6 gap-4 items-center justify-items-center mb-12'>
                 <img className=' h-16' src={company1} alt="" />
                 <img className=' h-16' src={company2} alt="" />
                 <img className=' h-12' src={company3} alt="" />

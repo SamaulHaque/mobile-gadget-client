@@ -1,5 +1,6 @@
 import DashboardLayout from "../Layout/DashboardLayout";
 import Blogs from "../Pages/Blogs/Blogs";
+import CategoryMobile from "../Pages/Categories/CategoryMobile";
 import MyOrders from "../Pages/Dashboard/MyOrders/MyOrders";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/Signup/Signup";
@@ -18,6 +19,11 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
+            },
+            {
+                path: '/category-mobile/:id',
+                element: <PrivateRoute><CategoryMobile></CategoryMobile></PrivateRoute>,
+                loader: ({params}) => fetch(`http://localhost:5000/category-mobile/${params.id}`)
             },
             {
                 path: '/login',
