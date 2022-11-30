@@ -17,16 +17,14 @@ const SignUp = () => {
             .then(() => {
                 toast.success('User Created Successfully')
                 setSignUpError('')
-                navigate('/')
                 const userInfo = {
                     displayName: data.name,
-                    accountType: data.account_type
-                    
+
                 }
 
                 updateUser(userInfo)
                     .then(() => {
-                        saveUserToDb(data.name, data.email)
+                        saveUserToDb(data.name, data.email, data.accountType)
                     })
                     .catch(error => {
                         console.error(error)
@@ -38,9 +36,9 @@ const SignUp = () => {
             })
     }
 
-    const saveUserToDb = (name, email) => {
-        const user = { name, email };
-        fetch('https://doctors-portal-server-five-kappa.vercel.app/users', {
+    const saveUserToDb = (name, email, accountType ) => {
+        const user = { name, email, accountType};
+        fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -49,6 +47,8 @@ const SignUp = () => {
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data)
+                navigate('/')
 
             })
     }

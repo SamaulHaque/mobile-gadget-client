@@ -4,7 +4,7 @@ const CategoryMobileCard = ({ mobile, setBookPhone}) => {
     const { title, img, location, resale_price, original_price, Used, posted_time, seller_name } = mobile;
     return (
         <div>
-            <div className="card w-96 bg-base-100 shadow-xl">
+            <div className="card w-full bg-base-100 shadow-xl">
                 <figure><img src={img} alt="mobile-img" className='h-80' /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{title}</h2>
@@ -20,7 +20,7 @@ const CategoryMobileCard = ({ mobile, setBookPhone}) => {
                         <label
                         onClick={()=>setBookPhone(mobile)}
                         htmlFor="booking-modal"
-                         className="btn btn-primary"
+                         className="btn btn-accent"
                          >Book Now</label>
                     </div>
                 </div>

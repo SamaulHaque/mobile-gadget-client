@@ -1,4 +1,4 @@
-// import { useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
@@ -6,22 +6,23 @@ import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 const MyOrders = () => {
     const {user} = useContext(AuthContext);
 
-    const url = `https://doctors-portal-server-five-kappa.vercel.app/bookings?email=${user?.email}`
+    const url = `http://localhost:5000/bookings?email=${user?.email}`
 
-    // const {data: bookings = []} = useQuery({
-    //     queryKey: ['bookings', user?.email],
+    const {data: bookings = []} = useQuery({
+        queryKey: ['bookings', user?.email],
 
-    //     queryFn: async () => {
-    //         const res = await fetch(url, {
-    //             headers: {
-    //                 authorization: `bearer ${localStorage.getItem('accessToken')}`
-    //             }
-    //         });
+        queryFn: async () => {
+            const res = await fetch(url);
+                //  {
+                // headers: {
+                //     authorization: `bearer ${localStorage.getItem('accessToken')}`
+                // }
+            // });
             
-    //         const data = await res.json();
-    //         return data;
-    //     }
-    // })
+            const data = await res.json();
+            return data;
+        }
+    })
 
     return (
         <div>
@@ -31,28 +32,26 @@ const MyOrders = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Name</th>
-                            <th>Treatment</th>
-                            <th>date</th>
-                            <th>Time</th>
+                            <th>Title</th>
+                            <th>Price</th>
+                            <th>Location</th>
                             <th>Payment</th>
                         </tr>
                     </thead>
                     <tbody>
-                       {/* {
+                       {
                         bookings.map((booking, i) => 
                             <tr key={booking._id}>
                             <th>{i+1}</th>
-                            <td>{booking.patient}</td>
-                            <td>{booking.treatment}</td>
-                            <td>{booking.appointmentDate}</td>
-                            <td>{booking.slot}</td>
+                            <td>{booking.title}</td>
+                            <td>{booking.price}</td>
+                            <td>{booking.location}</td>
                             <td>
                                 {
                                     booking.price && !booking.paid && <Link 
                                     to={`/dashboard/payment/${booking._id}`}
                                     ><button
-                                    className='btn btn-sm btn-primary'
+                                    className='btn btn-sm btn-accent'
                                     >Pay</button></Link>
                                 }
                                 {
@@ -61,7 +60,7 @@ const MyOrders = () => {
                             </td>
                         </tr>
                         )
-                       } */}
+                       }
                     </tbody>
                 </table>
             </div>

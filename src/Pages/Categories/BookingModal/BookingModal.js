@@ -34,7 +34,6 @@ const BookingModal = ({bookPhone, setBookPhone}) => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             if(data.acknowledged){
                 setBookPhone(null)
                 toast.success('Booking Confirmed'); 
@@ -64,7 +63,7 @@ const BookingModal = ({bookPhone, setBookPhone}) => {
 
                         <input name='location' type="text" defaultValue={location}  placeholder="Location" className="input input-bordered w-full" />
 
-                        <input className='btn btn-primary w-full' type="submit" value="Submit" />
+                        <input className='btn btn-accent w-full' type="submit" value="Submit" />
                     </form>
                 </div>
             </div>
