@@ -7,60 +7,62 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const SignUp = () => {
     const navigate = useNavigate()
-    const {register, handleSubmit, formState:{errors}} = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const [signUpError, setSignUpError] = useState(null)
-    const {createUser, updateUser, signInWithGoogle} = useContext(AuthContext);
-   
+    const { createUser, updateUser, signInWithGoogle } = useContext(AuthContext);
+
 
     const handleSignUp = data => {
         createUser(data.email, data.password)
-        .then(() => {
-            toast.success('User Created Successfully')
-            setSignUpError('')
-            navigate('/')
-            const userInfo = {
-                displayName: data.name
-            }
-
-            updateUser(userInfo)
             .then(() => {
-                saveUserToDb(data.name, data.email)
+                toast.success('User Created Successfully')
+                setSignUpError('')
+                navigate('/')
+                const userInfo = {
+                    displayName: data.name,
+                    accountType: data.account_type
+                    
+                }
+
+                updateUser(userInfo)
+                    .then(() => {
+                        saveUserToDb(data.name, data.email)
+                    })
+                    .catch(error => {
+                        console.error(error)
+                    })
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error(error)
+                setSignUpError(error.message)
             })
-        })
-        .catch((error) => {
-            console.error(error)
-            setSignUpError(error.message)
-        })
     }
 
     const saveUserToDb = (name, email) => {
-        const user = {name, email};
+        const user = { name, email };
         fetch('https://doctors-portal-server-five-kappa.vercel.app/users', {
             method: 'POST',
             headers: {
-                'content-type' : 'application/json'
+                'content-type': 'application/json'
             },
             body: JSON.stringify(user)
         })
-        .then(res => res.json())
-        .then(data => {
+            .then(res => res.json())
+            .then(data => {
 
-        })
+            })
     }
 
-    
+
     const handleGoogleLogin = () => {
 
         const provider = new GoogleAuthProvider()
 
         signInWithGoogle(provider)
-        .then(() => {})
-        .catch(error => {
-            console.error(error)
-        })
+            .then(() => { })
+            .catch(error => {
+                console.error(error)
+            })
     }
     return (
         <div className='h-[480px] flex justify-center items-center my-20'>
@@ -86,7 +88,7 @@ const SignUp = () => {
                         <input type="email" {...register('email', {
                             required: 'Email is required'
                         })} className="input input-bordered w-full" />
-                         {errors.email && <p className='text-red-600 mt-2'>{errors.email.message}</p>}
+                        {errors.email && <p className='text-red-600 mt-2'>{errors.email.message}</p>}
                     </div>
 
                     <div className="form-control w-full ">
@@ -98,13 +100,23 @@ const SignUp = () => {
                             minLength: {
                                 value: 6,
                                 message: "min length is 6 or more."
-                              },
-                              pattern:{
-                                value:/(?=.*[A-Z].*[(?=.*[!@#$&*])/,
-                                message:'Password must be One Upper case, One special character and one number.'
-                              }
-                        })}  className="input input-bordered w-full" />
-                         {errors.password && <p className='text-red-600 mt-2'>{errors.password.message}</p>}
+                            },
+                            pattern: {
+                                value: /(?=.*[A-Z].*[(?=.*[!@#$&*])/,
+                                message: 'Password must be One Upper case, One special character and one number.'
+                            }
+                        })} className="input input-bordered w-full" />
+                        {errors.password && <p className='text-red-600 mt-2'>{errors.password.message}</p>}
+                    </div>
+
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text">Account Type</span>
+                        </label>
+                        <select {...register("account_type")} className="select select-bordered w-full ">
+                            <option disabled selected>user</option> 
+                            <option>seller</option> 
+                        </select>
                     </div>
 
 

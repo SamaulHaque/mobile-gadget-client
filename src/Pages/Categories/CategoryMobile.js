@@ -22,6 +22,7 @@ const CategoryMobile = () => {
             bookPhone &&
             <BookingModal
             bookPhone={bookPhone}
+            setBookPhone={setBookPhone}
             ></BookingModal>
         }
         </div>

@@ -20,7 +20,7 @@ const CategoryMobileCard = ({ mobile, setBookPhone}) => {
                         <label
                         onClick={()=>setBookPhone(mobile)}
                         htmlFor="booking-modal"
-                         className="btn"
+                         className="btn btn-primary"
                          >Book Now</label>
                     </div>
                 </div>
