@@ -4,15 +4,22 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const SignUp = () => {
     const navigate = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [signUpError, setSignUpError] = useState(null)
     const { createUser, updateUser, signInWithGoogle } = useContext(AuthContext);
-
+    const [createdUserEmail, setCreatedUserEmail] = useState('')
+    const [token] = useToken(createdUserEmail)
+    
+    if(token){
+        navigate('/')
+    }
 
     const handleSignUp = data => {
+        console.log(data)
         createUser(data.email, data.password)
             .then(() => {
                 toast.success('User Created Successfully')
@@ -24,7 +31,7 @@ const SignUp = () => {
 
                 updateUser(userInfo)
                     .then(() => {
-                        saveUserToDb(data.name, data.email, data.accountType)
+                        saveUserToDb(data.name, data.email, data.account_type)
                     })
                     .catch(error => {
                         console.error(error)
@@ -47,11 +54,11 @@ const SignUp = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
-                navigate('/')
-
+                setCreatedUserEmail(email)
             })
     }
+
+    
 
 
     const handleGoogleLogin = () => {
@@ -114,8 +121,8 @@ const SignUp = () => {
                             <span className="label-text">Account Type</span>
                         </label>
                         <select {...register("account_type")} className="select select-bordered w-full ">
-                            <option disabled selected>user</option> 
-                            <option>seller</option> 
+                            <option selected value="user">user</option> 
+                            <option value="seller">seller</option> 
                         </select>
                     </div>
 
