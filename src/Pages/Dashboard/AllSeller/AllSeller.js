@@ -35,9 +35,10 @@ const AllSeller = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Name</th>
+                            <th>Seller Name</th>
                             <th>Email</th>
-                            <th>Admin</th>
+                            <th>Status</th>
+                            <th>Verify</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -46,6 +47,7 @@ const AllSeller = () => {
                             seller.map((user, i) => <tr key={user._id}>
                             <th>{i+1}</th>
                             <td>{user.name}</td>
+                            <td>{user.email}</td>
                             <td>{user.email}</td>
 
                             <td>{user.role !== 'admin' && <button 
