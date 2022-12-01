@@ -1,8 +1,10 @@
 import DashboardLayout from "../Layout/DashboardLayout";
 import Blogs from "../Pages/Blogs/Blogs";
 import CategoryMobile from "../Pages/Categories/CategoryMobile";
+import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
 import AllSeller from "../Pages/Dashboard/AllSeller/AllSeller";
 import MyOrders from "../Pages/Dashboard/MyOrders/MyOrders";
+import MyProduct from "../Pages/Dashboard/MyProduct/MyProduct";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/Signup/Signup";
 import AdminRoute from "./AdminRoute/AdminRoute";
@@ -52,10 +54,25 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/allSeller',
                 element: <AdminRoute><AllSeller></AllSeller></AdminRoute>
+            },
+            {
+                path:'/dashboard/add-product',
+                element: <AddProduct></AddProduct>
+            },
+            {
+                path:'/dashboard/my-product', 
+                element: <MyProduct></MyProduct>  
             }
         ]
         
-    }
+    },
+    {
+        path:'*',
+        element: <div  className='text-center'>
+          <h2>This Route Not Found.</h2>
+          <h2>404</h2>
+        </div>
+      }
 ])
 
 export default router;
