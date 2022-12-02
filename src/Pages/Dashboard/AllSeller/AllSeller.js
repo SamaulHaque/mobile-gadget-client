@@ -6,14 +6,14 @@ const AllSeller = () => {
     const { data: seller = [], refetch } = useQuery({
         queryKey: ['seller'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users');
+            const res = await fetch('https://mobile-gadget-server.vercel.app/users');
             const data = await res.json();
             return data;
         }
     });
 
     const handleMakeAdmin = id => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`https://mobile-gadget-server.vercel.app/users/admin/${id}`, {
           method: 'PUT',
           headers: {
             authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -28,8 +28,9 @@ const AllSeller = () => {
         })
     }
 
+    
     const handleDeleteUser =  id => {
-        fetch(`http://localhost:5000/seller/${id}`, {
+        fetch(`https://mobile-gadget-server.vercel.app/seller/${id}`, {
             method:'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -39,11 +40,11 @@ const AllSeller = () => {
         .then(data => {
             if(data.deletedCount > 0){
                 refetch()
-                window.confirm('Want to delete?')
                 toast.success(`This Seller deleted successfully.`)
                 
             }
         })
+        
     }
 
     return (
@@ -67,7 +68,7 @@ const AllSeller = () => {
                             <th>{i+1}</th>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
-                            <td>{user.email}</td>
+                            <td>{user.accountType}</td>
 
                             <td>{user.role !== 'admin' && <button 
                             onClick={() => handleMakeAdmin(user._id)}

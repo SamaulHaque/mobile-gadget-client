@@ -44,7 +44,7 @@ const SignUp = () => {
 
     const saveUserToDb = (name, email, accountType ) => {
         const user = { name, email, accountType};
-        fetch('http://localhost:5000/users', {
+        fetch('https://mobile-gadget-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

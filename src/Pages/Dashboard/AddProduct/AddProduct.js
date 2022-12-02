@@ -14,6 +14,7 @@ const AddProduct = () => {
             const productInfo = {
                 productName: data.name,
                 price: data.price,
+                img: data.image,
                 condition: data.condition,
                 mobile: data.mobile,
                 email: data.email,
@@ -23,7 +24,7 @@ const AddProduct = () => {
 
             }
 
-            fetch('http://localhost:5000/add-product', {
+            fetch('https://mobile-gadget-server.vercel.app/add-product', {
                 method: 'POST',
                 headers: {
                     'content-type' : 'application/json'
@@ -43,7 +44,7 @@ const AddProduct = () => {
     }
 
     return (
-        <div className='w-96 mx-5'>
+        <div className='w-96 mx-5 mb-8'>
             <h2 className='text-3xl mb-3'>Add A Product</h2>
             <form onSubmit={handleSubmit(handleAddProduct)}>
 
@@ -55,6 +56,16 @@ const AddProduct = () => {
                         required: 'Name is required'
                     })} className="input input-bordered w-full" />
                     {errors.name && <p className='text-red-600 mt-2'>{errors.name.message}</p>}
+                </div>
+
+                <div className="form-control w-full">
+                    <label className="label">
+                        <span className="label-text">Product Photo</span>
+                    </label>
+                    <input type="file" {...register('image', {
+                        required: 'Image is required'
+                    })} className="input input-bordered w-full pt-2" />
+                    {errors.image && <p className='text-red-600 mt-2'>{errors.image.message}</p>}
                 </div>
 
                 <div className="form-control w-full">

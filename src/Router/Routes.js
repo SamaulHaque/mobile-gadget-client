@@ -33,7 +33,7 @@ const router = createBrowserRouter([
             {
                 path: '/category-mobile/:id',
                 element: <PrivateRoute><CategoryMobile></CategoryMobile></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/category-mobile/${params.id}`)
+                loader: ({params}) => fetch(`https://mobile-gadget-server.vercel.app/category-mobile/${params.id}`)
             },
             {
                 path: '/login',
@@ -81,7 +81,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader: ({params}) => fetch(`https://mobile-gadget-server.vercel.app/bookings/${params.id}`)
             },
         ]
         

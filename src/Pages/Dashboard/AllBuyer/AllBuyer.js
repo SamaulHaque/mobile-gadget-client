@@ -4,16 +4,16 @@ import toast from 'react-hot-toast';
 
 const AllBuyer = () => {
     const { data: buyers = [], refetch} = useQuery({
-        queryKey: ['seller'],
+        queryKey: ['buyer'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/buyer');
+            const res = await fetch('https://mobile-gadget-server.vercel.app/buyer');
             const data = await res.json();
             return data;
         }
     });
 
     const handleDeleteBuyer =  id => {
-        fetch(`http://localhost:5000/buyer/${id}`, {
+        fetch(`https://mobile-gadget-server.vercel.app/buyer/${id}`, {
             method:'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -28,7 +28,9 @@ const AllBuyer = () => {
                 
             }
         })
+        
     }
+
     return (
         <div>
             <h2 className='text-3xl mb-3'>All Buyer</h2>
