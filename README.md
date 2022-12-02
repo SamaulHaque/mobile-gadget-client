@@ -16,4 +16,10 @@ Mobile Gadget [Website Link](https://mobile-gadget.web.app)).
 
 ### 7: In this project i use tailwind, daisy ui,, React Router, Express js, Contexts API, mongodb,  and other things;
 
+### 7: then admin route, private route, seller route created;
+
+### 8: my orders, all seller etc created;
+
+### 9: In this project i use tailwind, daisy ui,, React Router, Express js, Contexts API, mongodb, react form  and other things;
+
 
