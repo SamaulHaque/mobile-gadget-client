@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const MyOrders = () => {
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     const url = `http://localhost:5000/bookings?email=${user?.email}`
 
-    const {data: bookings = []} = useQuery({
+    const { data: bookings = [] } = useQuery({
         queryKey: ['bookings', user?.email],
 
         queryFn: async () => {
@@ -17,8 +17,8 @@ const MyOrders = () => {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
             });
-                
-            
+
+
             const data = await res.json();
             return data;
         }
@@ -39,28 +39,28 @@ const MyOrders = () => {
                         </tr>
                     </thead>
                     <tbody>
-                       {
-                        bookings?.map((booking, i) => 
-                            <tr key={booking._id}>
-                            <th>{i+1}</th>
-                            <td>{booking.title}</td>
-                            <td>{booking.price}</td>
-                            <td>{booking.location}</td>
-                            <td>
-                                {
-                                    booking.price && !booking.paid && <Link 
-                                    to={`/dashboard/payment/${booking._id}`}
-                                    ><button
-                                    className='btn btn-sm btn-accent'
-                                    >Pay</button></Link>
-                                }
-                                {
-                                    booking.price && booking.paid && <span className='text-secondary'>Paid</span>
-                                }
-                            </td>
-                        </tr>
-                        )
-                       }
+                        {
+                            bookings?.map((booking, i) =>
+                                <tr key={booking._id}>
+                                    <th>{i + 1}</th>
+                                    <td>{booking.title}</td>
+                                    <td>{booking.price}</td>
+                                    <td>{booking.location}</td>
+                                    <td>
+                                        {
+                                            booking.price && !booking.paid && <Link
+                                                to={`/dashboard/payment/${booking._id}`}
+                                            ><button
+                                                className='btn btn-sm btn-accent'
+                                            >Pay</button></Link>
+                                        }
+                                        {
+                                            booking.price && booking.paid && <span className='text-secondary'>Paid</span>
+                                        }
+                                    </td>
+                                </tr>
+                            )
+                        }
                     </tbody>
                 </table>
             </div>

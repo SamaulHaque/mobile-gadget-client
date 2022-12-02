@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const MyProduct = () => {
@@ -7,7 +8,7 @@ const MyProduct = () => {
 
     const url = `http://localhost:5000/my-product?email=${user?.email}`
 
-    const {data: products = []} = useQuery({
+    const {data: products = [], refetch} = useQuery({
         queryKey: ['bookings', user?.email],
 
         queryFn: async () => {
@@ -16,6 +17,25 @@ const MyProduct = () => {
             return data;
         }
     })
+
+    const handleDeleteProduct =  id => {
+        fetch(`http://localhost:5000/my-product/${id}`, {
+            method:'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.deletedCount > 0){
+                refetch()
+                window.confirm('Want to delete?')
+                toast.success(`This Product deleted successfully.`)
+                
+            }
+        })
+    }
+
     return (
         <div>
             <h2 className='text-3xl mb-3'>My Product</h2>
@@ -38,7 +58,10 @@ const MyProduct = () => {
                             <td>{product.productName}</td>
                             <td>{product.price}</td>
                             <td>{product.condition}</td>
-                            <td></td>
+                            <td><button 
+                            onClick={()=>handleDeleteProduct(product?._id) }
+                            className='btn btn-error btn-sm'
+                            >Delete</button></td>
                         </tr>
                         )
                        }

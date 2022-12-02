@@ -19,7 +19,6 @@ const SignUp = () => {
     }
 
     const handleSignUp = data => {
-        console.log(data)
         createUser(data.email, data.password)
             .then(() => {
                 toast.success('User Created Successfully')

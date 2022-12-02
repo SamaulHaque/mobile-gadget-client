@@ -27,6 +27,25 @@ const AllSeller = () => {
             }
         })
     }
+
+    const handleDeleteUser =  id => {
+        fetch(`http://localhost:5000/seller/${id}`, {
+            method:'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.deletedCount > 0){
+                refetch()
+                window.confirm('Want to delete?')
+                toast.success(`This Seller deleted successfully.`)
+                
+            }
+        })
+    }
+
     return (
         <div>
             <h2 className='text-3xl mb-3'>All Seller</h2>
@@ -55,7 +74,10 @@ const AllSeller = () => {
                             className='btn btn-sm btn-secondary'>Make Admin</button>}
                             </td>
 
-                            <td><button className='btn btn-sm btn-error'>Delete</button></td>
+                            <td><button
+                            onClick={()=>handleDeleteUser(user?._id)}
+                            className='btn btn-sm btn-error'
+                            >Delete</button></td>
                         </tr>)
                         }
                     </tbody>
