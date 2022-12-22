@@ -1,5 +1,7 @@
 import { async } from '@firebase/util';
 import { useQuery } from '@tanstack/react-query';
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import Category from './Category';
 
 const Categories = () => {
@@ -11,6 +13,11 @@ const Categories = () => {
         return data;
         }
     })
+
+    const {loading} = useContext(AuthContext)
+    if(loading){
+        return <h1 className='text-3xl text-secondary flex justify-center items-center font-bold mt-20'>L O A D I N G . . .</h1>
+    }
 
     return (
         <div className='mx-5'>
