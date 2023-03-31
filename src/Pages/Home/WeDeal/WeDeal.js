@@ -10,7 +10,8 @@ const WeDeal = () => {
     return (
         <div className='mx-5 mt-16'>
             <h2 className='text-4xl text-cyan-600 text-center font-bold mb-8'>We Deal In</h2>
-            <div className='grid grid-cols-3 md:grid-cols-6 gap-4 items-center justify-items-center mb-12'>
+            <div className='grid grid-cols-3 md:grid-cols-6 gap-4 items-center justify-items-center mb-12'  data-aos="fade-up"
+                    data-aos-easing="ease-out-cubic" data-aos-duration="1500">
                 <img className=' h-16' src={company1} alt="" />
                 <img className=' h-16' src={company2} alt="" />
                 <img className=' h-12' src={company3} alt="" />

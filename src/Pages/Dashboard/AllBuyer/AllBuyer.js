@@ -34,7 +34,8 @@ const AllBuyer = () => {
     return (
         <div>
             <h2 className='text-3xl mb-3'>All Buyer</h2>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto" data-aos="fade-up"
+        data-aos-easing="ease-out-cubic" data-aos-duration="1000">
                 <table className="table w-full">
                     <thead>
                         <tr>

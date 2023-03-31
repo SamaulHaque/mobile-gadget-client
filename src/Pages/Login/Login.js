@@ -52,7 +52,8 @@ const Login = () => {
     }
 
     return (
-        <div className='h-[480px] flex justify-center items-center my-20'>
+        <div className='h-[480px] flex justify-center items-center my-20' data-aos="fade-up"
+        data-aos-easing="ease-out-cubic" data-aos-duration="1000">
             <div className='w-96 p-7 border'>
                 <h3 className='text-3xl text-center mb-5'>Login</h3>
 
@@ -62,7 +63,7 @@ const Login = () => {
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
-                        <input type="email"  {...register("email", { required: "Email Address is Required." })} className="input input-bordered w-full" />
+                        <input type="email"  {...register("email", { required: "Email Address is Required." })} className="input input-bordered w-full" defaultValue="test@gmail.com"/>
                         {errors.email && <p className='text-red-600 mt-2' role="alert">{errors.email?.message}</p>}
 
                     </div>
@@ -76,7 +77,7 @@ const Login = () => {
                             required: "Password is Required.",
                            
                         })}
-                            className="input input-bordered w-full" />
+                            className="input input-bordered w-full" defaultValue="Test12#" />
                         {errors.password && <p className='text-red-600 mt-2' role="alert">{errors.password?.message}</p>}
                         
                     </div>

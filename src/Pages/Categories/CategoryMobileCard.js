@@ -5,8 +5,10 @@ const CategoryMobileCard = ({ mobile, setBookPhone}) => {
     return (
         <div>
             <div className="card w-full bg-base-100 shadow-xl">
-                <figure><img src={img} alt="mobile-img" className='h-80' /></figure>
-                <div className="card-body">
+                <figure><img src={img} alt="mobile-img" className='h-80' data-aos="fade-up"
+        data-aos-easing="ease-out-cubic" data-aos-duration="1000" /></figure>
+                <div className="card-body" data-aos="fade-up"
+        data-aos-easing="ease-out-cubic" data-aos-duration="1000">
                     <h2 className="card-title">{title}</h2>
                     <p>
                     <span>Original Price: <b>{original_price}</b> Taka</span> <br />

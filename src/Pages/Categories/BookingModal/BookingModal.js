@@ -50,7 +50,8 @@ const BookingModal = ({bookPhone, setBookPhone}) => {
                 <div className="modal-box relative">
                     <label htmlFor="booking-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <h3 className="text-lg font-bold">{title}</h3>
-                    <form  onSubmit={handleBooking} className='grid grid-cols-1 gap-3 mt-6'>
+                    <form  onSubmit={handleBooking} className='grid grid-cols-1 gap-3 mt-6' data-aos="fade-up"
+                        data-aos-easing="ease-out-cubic" data-aos-duration="1000">
                         <input name='name' type="text" defaultValue={user?.displayName} disabled placeholder="Your Name" className="input input-bordered w-full" />
 
                         <input name='email' type="email" defaultValue={user?.email} disabled placeholder="Email Address" className="input input-bordered w-full" required/>

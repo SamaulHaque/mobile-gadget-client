@@ -29,7 +29,7 @@ const Footer = () => {
                 </div>  
             </div>
          <div className='text-center mt-12'>
-            <p>Copyright © 2022 - All right reserved by Mobile Gadget.
+            <p>Copyright © 2023 - All right reserved by Mobile Gadget.
             </p>
         </div> 
         </footer>

@@ -71,7 +71,8 @@ const SignUp = () => {
             })
     }
     return (
-        <div className='h-[480px] flex justify-center items-center my-20'>
+        <div className='h-[480px] flex justify-center items-center my-20' data-aos="fade-up"
+        data-aos-easing="ease-out-cubic" data-aos-duration="1000">
             <div className='w-96 p-7 border'>
                 <h3 className='text-3xl text-center mb-5'>Sign Up</h3>
 

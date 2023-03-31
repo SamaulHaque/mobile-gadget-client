@@ -2,8 +2,11 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import Categories from '../../Categories/Categories';
 import AdvertisedItems from '../../Shared/AdvertisedItems/AdvertisedItems';
+import AboutUs from '../AboutUs/AboutUs';
 import Banner from '../Banner/Banner';
+import OurStory from '../OurStory/OurStory';
 import WeDeal from '../WeDeal/WeDeal';
+import WhyUs from '../WhyUs/WhyUs';
 
 const Home = () => {
     const {loading} = useContext(AuthContext)
@@ -13,8 +16,11 @@ const Home = () => {
     return (
         <div className=''>
             <Banner></Banner>
-            <WeDeal></WeDeal>
             <Categories></Categories>
+            <WhyUs></WhyUs>
+            <OurStory></OurStory>
+            <WeDeal></WeDeal>
+            <AboutUs></AboutUs>
             <AdvertisedItems></AdvertisedItems>
         </div>
     );
